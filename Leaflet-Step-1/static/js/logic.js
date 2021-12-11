@@ -4,7 +4,7 @@ const earth = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_wee
 
 //get request
 d3.json('https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json').then(function(response){
-    const tectonicplates = L.geoJSON(response,{  
+    const Tectonicplates = L.geoJSON(response,{  
         style: function(feature){
             return{
                 color: "#B7DF5F",
@@ -29,13 +29,13 @@ d3.json('https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/
             }
             return L.circleMarker( latlng, options );
         }
-        createMap(earthQuakes, tectonicplates);    
+        createMap(earthQuakes, Tectonicplates);    
     })
 })
 
 
 //Create Map Function
-function createMap(earthQuakes, tectonicplates) {
+function createMap(earthQuakes, Tectonicplates) {
     const dark= L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -71,13 +71,13 @@ function createMap(earthQuakes, tectonicplates) {
 
     const overlayMaps = {
         "Earthquakes" : earthQuakes,
-         "tectonicplates": tectonicplates
+         "Tectonicplates": Tectonicplates
         };
 
     let myMap = L.map('map', {
         center: [0, 0],
         zoom: 3,
-        layers: [dark, earthQuakes,tectonicplates]
+        layers: [dark, earthQuakes,Tectonicplates]
         });
 
     
